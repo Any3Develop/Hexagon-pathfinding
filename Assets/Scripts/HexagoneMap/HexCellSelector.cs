@@ -3,23 +3,24 @@ using UnityEngine.EventSystems;
 
 public class HexCellSelector : MonoBehaviour
 {
-    [SerializeField] private Transform _gridParent = null;
-    [SerializeField] private HexMesh _hexMesh = null;
-
     private IPathFinder _pathFinder = null;
     private IMapSettings _mapSettings = null;
     private IMap _map = null;
-    private HexMapGenerator hexMapGenerator;
+
     private ICell _searchFromCell = null;
     private ICell _searchToCell = null;
+
+    public void Reset()
+    {
+        _searchFromCell = null;
+        _searchToCell = null;
+    }
 
     private void Start()
     {
         _mapSettings = GameInstances.Instance.MapSettings;
         _pathFinder = GameInstances.Instance.PathFinder;
         _map = GameInstances.Instance.Map;
-        hexMapGenerator = new HexMapGenerator(_map, _hexMesh, _gridParent);
-        hexMapGenerator.CreateMap();
     }
 
     private void Update()

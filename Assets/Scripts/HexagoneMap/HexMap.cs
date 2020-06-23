@@ -40,6 +40,7 @@ public class HexMap : IMap
             Debug.LogError(this + " : [RemoveCell] does not cintains");
             return;
         }
+        cell.UnInitialize();
         Cells.Remove(cell);
     }
 

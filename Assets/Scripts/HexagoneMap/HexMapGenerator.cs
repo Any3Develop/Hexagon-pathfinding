@@ -17,6 +17,7 @@ public class HexMapGenerator
     }
     public void CreateMap()
     {
+        _map.Clear();
         for (int z = 0, i = 0; z < _settings.CellCountZ; z++)
         {
             for (int x = 0; x < _settings.CellCountX; x++)
@@ -53,7 +54,6 @@ public class HexMapGenerator
         {
             cell.CellColor = _settings.DefaultCellColor;
         }
-            _map.Add(cell);
 
         bool makeRoad = Random.value > 0.7f && cell.IsWalkable ? true : false;
         if(makeRoad)
@@ -88,5 +88,6 @@ public class HexMapGenerator
                 }
             }
         }
+        _map.Add(cell);
     }
 }

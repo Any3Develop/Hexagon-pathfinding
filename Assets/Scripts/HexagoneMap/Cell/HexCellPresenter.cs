@@ -43,18 +43,6 @@ public class HexCellPresenter : ICell
 
     public void UnInitialize()
     {
-        var directions = Enum.GetValues(typeof(HexDirection)) as HexDirection[];
-        foreach (var item in _neighbors)
-        {
-            if(item == null)
-            {
-                continue;
-            }
-            for (int i = 0; i < directions.Length; i++)
-            {
-                item.SetNeighbor(directions[i], null);
-            }
-        }
         _view.DestroyCell();
     }
 

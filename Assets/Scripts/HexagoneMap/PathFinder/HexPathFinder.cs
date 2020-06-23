@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public partial class HexPathFinder : IPathFinder
 {
@@ -33,15 +34,21 @@ public partial class HexPathFinder : IPathFinder
 
             if (current == toCell)
             {
-                toCell.UpdateLabel(toCell.Distance.ToString());
-                fromCell.UpdateLabel(fromCell.Distance.ToString());
                 current = current.PathFrom;
+                path.Add(toCell);
+                path.Add(toCell.PathFrom);
                 while (current != fromCell)
                 {
-                    current.UpdateLabel(current.Distance.ToString());
                     current.EnableHighlight(_hexMapSettings.ColorPath);
                     current = current.PathFrom;
                     path.Add(current);     
+                };
+
+                int i = 0;
+                path.Reverse();
+                foreach (var item in path)
+                {
+                    item.UpdateLabel(i++ + "");
                 }
                 
                 break;
